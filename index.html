@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Statistics Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-cricket"></i>
+                    <h1>Cricket Stats Manager</h1>
+                </div>
+                <div class="header-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="totalPlayers">0</span>
+                        <span class="stat-label">Players</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="totalMatches">0</span>
+                        <span class="stat-label">Matches</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="teamAverage">0.0</span>
+                        <span class="stat-label">Team Avg</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav">
+            <button class="nav-btn active" data-tab="dashboard">
+                <i class="fas fa-tachometer-alt"></i>
+                Dashboard
+            </button>
+            <button class="nav-btn" data-tab="players">
+                <i class="fas fa-users"></i>
+                Players
+            </button>
+            <button class="nav-btn" data-tab="add-player">
+                <i class="fas fa-user-plus"></i>
+                Add Player
+            </button>
+            <button class="nav-btn" data-tab="add-match">
+                <i class="fas fa-plus-circle"></i>
+                Add Match
+            </button>
+            <button class="nav-btn" data-tab="statistics">
+                <i class="fas fa-chart-bar"></i>
+                Statistics
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Tab -->
+            <div class="tab-content active" id="dashboard">
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-trophy"></i> Top Performers</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="topPerformers" class="top-performers">
+                                <!-- Top performers will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-fire"></i> Players in Form</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="playersInForm" class="players-in-form">
+                                <!-- Players in form will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-chart-pie"></i> Role Distribution</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="role-stats">
+                                <div class="role-item">
+                                    <span class="role-label">Batsmen</span>
+                                    <span class="role-count" id="batsmenCount">0</span>
+                                </div>
+                                <div class="role-item">
+                                    <span class="role-label">Bowlers</span>
+                                    <span class="role-count" id="bowlersCount">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-home"></i> Recent Matches</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="recentMatches" class="recent-matches">
+                                <!-- Recent matches will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Players Tab -->
+            <div class="tab-content" id="players">
+                <div class="players-header">
+                    <h2>All Players</h2>
+                    <div style="display: flex; gap: 1rem; align-items: center;">
+                        <div class="search-box">
+                            <input type="text" id="playerSearch" placeholder="Search players...">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <button onclick="refreshPlayers()" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+                <div class="players-grid" id="playersGrid">
+                    <!-- Players will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Add Player Tab -->
+            <div class="tab-content" id="add-player">
+                <div class="form-container">
+                    <h2>Add New Player</h2>
+                    <form id="addPlayerForm" class="form">
+                        <div class="form-group">
+                            <label for="playerName">Player Name</label>
+                            <input type="text" id="playerName" name="playerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="playerRole">Role</label>
+                            <select id="playerRole" name="playerRole" required>
+                                <option value="">Select Role</option>
+                                <option value="batsman">Batsman</option>
+                                <option value="bowler">Bowler</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Add Player
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="testAddPlayer()" style="margin-top: 10px;">
+                            <i class="fas fa-bug"></i> Test Add Player
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Add Match Tab -->
+            <div class="tab-content" id="add-match">
+                <div class="form-container">
+                    <h2>Add Match Statistics</h2>
+                    <form id="addMatchForm" class="form">
+                        <div class="form-group">
+                            <label for="matchPlayer">Player</label>
+                            <select id="matchPlayer" name="matchPlayer" required>
+                                <option value="">Select Player</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="matchDate">Match Date</label>
+                            <input type="date" id="matchDate" name="matchDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="matchOpponent">Opponent</label>
+                            <input type="text" id="matchOpponent" name="matchOpponent" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="matchVenue">Venue</label>
+                            <input type="text" id="matchVenue" name="matchVenue" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="matchType">Match Type</label>
+                            <select id="matchType" name="matchType" required>
+                                <option value="">Select Type</option>
+                                <option value="home">Home</option>
+                                <option value="away">Away</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="matchScore">Score</label>
+                            <input type="number" id="matchScore" name="matchScore" min="0" max="1000" required>
+                            <small id="scoreHint">Enter runs for batsmen or wickets for bowlers</small>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Add Match
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Statistics Tab -->
+            <div class="tab-content" id="statistics">
+                <div class="stats-container">
+                    <div class="stats-grid">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Team Statistics</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="stat-row">
+                                    <span>Total Players:</span>
+                                    <span id="totalPlayersStat">0</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span>Team Average:</span>
+                                    <span id="teamAverageStat">0.0</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span>Total Matches:</span>
+                                    <span id="totalMatchesStat">0</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Role-wise Averages</h3>
+                            </div>
+                            <div class="card-body">
+                                <div id="roleAverages">
+                                    <!-- Role averages will be loaded here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal for Player Details -->
+    <div id="playerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="playerModalContent">
+                <!-- Player details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
