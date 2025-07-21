@@ -1,142 +1,105 @@
 # 🏏 Cricket Statistics Management System
 
-A complete web-based Cricket Statistics Management System with a C++ backend API and modern JavaScript frontend.
-
-## 🎯 Features
-
-- **Player Management**: Add, view, and delete players
-- **Match Statistics**: Record match data for players
-- **Dashboard**: Real-time statistics and insights
-- **Modern UI**: Responsive design with animations
-- **REST API**: Complete backend with all CRUD operations
-
-## 📁 Project Structure
-
-### Core Files
-- `index.html` - Main frontend application
-- `script.js` - Frontend JavaScript logic
-- `styles.css` - Modern UI styling
-- `simple_windows_server.cpp` - Backend C++ server source
-- `cricket_server_final.exe` - Compiled server executable
-- `cricket_stats.dat` - Data storage file
-- `start_system.bat` - Windows startup script
-
-### Documentation
-- `README.md` - This file
-- `DSA Assignment-1-22BCE301-22BCE310.pdf` - Assignment requirements
-- `DSA INOOVATIVE ASSIGHMENT 2.docx` - Assignment documentation
-
-## 🚀 Quick Start
-
-### Prerequisites
-- Windows OS
-- C++ compiler (g++ recommended)
-- Web browser
-
-### Running the System
-
-1. **Start the Backend Server:**
-   ```bash
-   .\cricket_server_final.exe
-   ```
-   Or use the startup script:
-   ```bash
-   .\start_system.bat
-   ```
-
-2. **Open the Frontend:**
-   - Open `index.html` in your web browser
-   - Or double-click the file
-
-3. **Access the Application:**
-   - Server runs on: `http://localhost:8080`
-   - Frontend: Open `index.html` in browser
-
-## 🔧 API Endpoints
-
-- `GET /api/players` - Get all players
-- `GET /api/players/top` - Get top performers
-- `GET /api/players/form` - Get players in form
-- `GET /api/stats` - Get team statistics
-- `POST /api/players` - Add new player
-- `POST /api/matches` - Add match statistics
-- `DELETE /api/players/{id}` - Delete player
-
-## 🎨 Features
-
-### Dashboard
-- Total players and matches count
-- Team average statistics
-- Top performers list
-- Players in form
-- Recent matches
-
-### Player Management
-- Add new players with roles
-- View player details and statistics
-- Delete players with confirmation
-- Search and filter players
-
-### Match Statistics
-- Record match scores
-- Track home/away performance
-- Calculate averages and trends
-- Form analysis
-
-### Modern UI
-- Responsive design
-- Smooth animations
-- Beautiful gradients
-- Interactive elements
-
-## 🛠️ Development
-
-### Compiling the Server
-```bash
-g++ -std=c++11 -o cricket_server_final.exe simple_windows_server.cpp -lws2_32
-```
-
-### File Structure
-```
-├── index.html              # Main application
-├── script.js               # Frontend logic
-├── styles.css              # UI styling
-├── simple_windows_server.cpp # Backend source
-├── cricket_server_final.exe  # Compiled server
-├── cricket_stats.dat       # Data storage
-├── start_system.bat        # Startup script
-└── README.md               # Documentation
-```
-
-## 📊 Data Storage
-
-- Data is automatically saved to `cricket_stats.dat`
-- File format: Custom delimited format
-- Automatic backup and recovery
-- Error handling for corrupted data
-
-## 🎯 System Requirements
-
-- **OS**: Windows 10/11
-- **Browser**: Chrome, Firefox, Edge (modern browsers)
-- **Memory**: 50MB RAM
-- **Storage**: 10MB free space
-
-## 🏆 Complete CRUD Operations
-
-- ✅ **Create** - Add new players and matches
-- ✅ **Read** - View players, statistics, and details
-- ✅ **Update** - Add match statistics to players
-- ✅ **Delete** - Remove players with confirmation
-
-## 🎉 Ready to Use!
-
-Your Cricket Statistics Management System is now clean and ready for use or submission!
-
-**Total Files**: 8 core files + documentation
-**Size**: ~500KB (excluding documentation)
-**Features**: Complete CRUD operations with modern UI
+A full-stack web application for managing cricket player statistics, built with a C++ backend (REST API) and a modern JavaScript frontend.
 
 ---
 
-**Developed for DSA Assignment - Cricket Statistics Management System** 🏏✨ 
+## 🚀 Features
+
+- **Add, View, and Remove Players**
+- **Add and View Match Statistics**
+- **Dashboard with Team and Player Analytics**
+- **Top Performers & Players in Form**
+- **Responsive, Modern UI**
+- **Persistent Data Storage**
+- **Error Handling and User Feedback**
+
+---
+
+## 🛠️ Tech Stack
+
+- **Backend:** C++ (Winsock, File I/O, REST API)
+- **Frontend:** HTML, CSS, JavaScript (Vanilla)
+- **Data Storage:** Local file (`cricket_stats.dat`)
+
+---
+
+## 📂 Project Structure
+
+```
+assingment/
+├── cricket_stats.dat         # Data file (auto-generated)
+├── cricket_server_final.exe  # C++ backend server executable
+├── index.html                # Main frontend page
+├── script.js                 # Frontend JavaScript logic
+├── styles.css                # Frontend CSS styles
+├── README.md                 # Project documentation
+```
+
+---
+
+## ⚡ Getting Started
+
+### 1. **Run the Backend Server**
+
+- Open a terminal in the project directory.
+- Run the backend server:
+  ```
+  ./cricket_server_final.exe
+  ```
+- You should see:
+  ```
+  Cricket API Server running on port 8080
+  Available endpoints:
+    GET  /api/players
+    POST /api/players
+    DELETE /api/players/{id}
+    ...
+  ```
+
+### 2. **Open the Frontend**
+
+- Open `index.html` in your web browser.
+- The app will connect to the backend at `http://localhost:8080/api`.
+
+---
+
+## 🖥️ Usage
+
+- **Dashboard:** View team stats, top performers, and recent matches.
+- **Players Tab:** View, search, and delete players.
+- **Add Player:** Add new players to the system.
+- **Add Match:** Add match statistics for players.
+- **Statistics:** View advanced team and role-based analytics.
+
+---
+
+## 📝 API Endpoints
+
+- `GET    /api/players`         — List all players
+- `POST   /api/players`         — Add a new player
+- `DELETE /api/players/{id}`    — Remove a player
+- `POST   /api/matches`         — Add match statistics
+- `GET    /api/players/top`     — Top performers
+- `GET    /api/players/form`    — Players in form
+- `GET    /api/stats`           — Team statistics
+
+---
+
+## ❓ Troubleshooting
+
+- **"Failed to connect to server"**  
+  Make sure `cricket_server_final.exe` is running and not blocked by firewall/antivirus.
+- **CORS or Network Errors**  
+  Ensure the backend is running on `localhost:8080` and no other process is using the port.
+- **Data Not Saving**  
+  The backend writes to `cricket_stats.dat` in the project directory.
+
+---
+
+## 📢 Credits
+
+- Developed by Sanghani Manish
+- For academic use (DSA Assignment, Nirma University)
+
+---
